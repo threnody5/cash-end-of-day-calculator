@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import * as functions from './functions';
 import './styles.css';
 
 const InputForm = () => {
@@ -33,20 +34,22 @@ const InputForm = () => {
     hundred: 100.0,
   };
 
-  const isNaNChecker = (value: number): number => {
-    if (isNaN(value)) {
-      return 0;
-    }
-    return value;
-  };
+  const nickelValue = nickelTotal / currencyValues.nickel;
+  const dimeValue = dimeTotal / currencyValues.dime;
+  const quarterValue = quarterTotal / currencyValues.quarter;
+  const dollarValue = dollarTotal / currencyValues.dollar;
+  const toonieValue = toonieTotal / currencyValues.toonie;
+  const fiveValue = fiveTotal / currencyValues.five;
+  const tenValue = tenTotal / currencyValues.ten;
+  const twentyValue = twentyTotal / currencyValues.twenty;
+  const fiftyValue = fiftyTotal / currencyValues.fifty;
+  const hundredValue = hundredTotal / currencyValues.hundred;
 
-  const inputChangeHandler = (
-    currencyValue: number,
-    e: React.ChangeEvent<HTMLInputElement>
-  ): number => {
-    const newValue = calculateTotal(currencyValue, e.target.valueAsNumber);
-    return isNaNChecker(newValue);
-  };
+  //TODO: Figure out how to remove items from local storage if the browser is closed, not if the page is reset
+  // onbeforeunload = (): string => {
+  //   localStorage.removeItem('localNickel');
+  //   return '';
+  // };
 
   useEffect((): void => {
     setCashTotal(
@@ -83,9 +86,29 @@ const InputForm = () => {
     invoicesTotal,
   ]);
 
-  const calculateTotal = (value: number, amount: number): number => {
-    return value * amount;
-  };
+  useEffect((): void => {
+    const getNickelTotal = localStorage.getItem('localNickel');
+    const getDimeTotal = localStorage.getItem('localDime');
+    const getQuarterTotal = localStorage.getItem('localQuarter');
+    // const getDollarTotal = localStorage.getItem('localDollar');
+    // const getToonieTotal = localStorage.getItem('localToonie');
+    // const getFiveTotal = localStorage.getItem('localFive');
+    // const getTenTotal = localStorage.getItem('localTen');
+    // const getTwentyTotal = localStorage.getItem('localTwenty');
+    // const getFiftyTotal = localStorage.getItem('localFifty');
+    // const getHundredTotal = localStorage.getItem('localHundred');
+    if (getNickelTotal) {
+      setNickelTotal(parseFloat(getNickelTotal));
+    }
+    if (getDimeTotal) {
+      setDimeTotal(parseFloat(getDimeTotal));
+    }
+    if (getQuarterTotal) {
+      setQuarterTotal(parseFloat(getQuarterTotal));
+    }
+    //TODO: Finish setting totals if not null
+  }, []);
+
   return (
     <main className='input-form'>
       <input
@@ -103,12 +126,17 @@ const InputForm = () => {
                 type='number'
                 name='nickel'
                 onChange={(e) => {
-                  const updatedValue = inputChangeHandler(
+                  const updatedValue = functions.inputChangeHandler(
                     currencyValues.nickel,
                     e
                   );
                   setNickelTotal(updatedValue);
+                  functions.storeTotalInLocalStorage(
+                    'localNickel',
+                    updatedValue
+                  );
                 }}
+                value={nickelValue}
               />
             </td>
             <td>= ${nickelTotal.toFixed(2)}</td>
@@ -122,12 +150,14 @@ const InputForm = () => {
                 type='number'
                 name='dime'
                 onChange={(e) => {
-                  const updatedValue = inputChangeHandler(
+                  const updatedValue = functions.inputChangeHandler(
                     currencyValues.dime,
                     e
                   );
                   setDimeTotal(updatedValue);
+                  functions.storeTotalInLocalStorage('localDime', updatedValue);
                 }}
+                value={dimeValue}
               />
             </td>
             <td>= ${dimeTotal.toFixed(2)}</td>
@@ -141,12 +171,17 @@ const InputForm = () => {
                 type='number'
                 name='quarter'
                 onChange={(e) => {
-                  const updatedValue = inputChangeHandler(
+                  const updatedValue = functions.inputChangeHandler(
                     currencyValues.quarter,
                     e
                   );
                   setQuarterTotal(updatedValue);
+                  functions.storeTotalInLocalStorage(
+                    'localQuarter',
+                    updatedValue
+                  );
                 }}
+                value={quarterValue}
               />
             </td>
             <td>= ${quarterTotal.toFixed(2)}</td>
@@ -159,12 +194,13 @@ const InputForm = () => {
                 type='number'
                 name='dollar'
                 onChange={(e) => {
-                  const updatedValue = inputChangeHandler(
+                  const updatedValue = functions.inputChangeHandler(
                     currencyValues.dollar,
                     e
                   );
                   setDollarTotal(updatedValue);
                 }}
+                value={dollarValue}
               />
             </td>
             <td>= ${dollarTotal.toFixed(2)}</td>
@@ -177,12 +213,13 @@ const InputForm = () => {
                 type='number'
                 name='toonie'
                 onChange={(e) => {
-                  const updatedValue = inputChangeHandler(
+                  const updatedValue = functions.inputChangeHandler(
                     currencyValues.toonie,
                     e
                   );
                   setToonieTotal(updatedValue);
                 }}
+                value={toonieValue}
               />
             </td>
             <td>= ${toonieTotal.toFixed(2)}</td>
@@ -195,12 +232,13 @@ const InputForm = () => {
                 type='number'
                 name='five-bill'
                 onChange={(e) => {
-                  const updatedValue = inputChangeHandler(
+                  const updatedValue = functions.inputChangeHandler(
                     currencyValues.five,
                     e
                   );
                   setFiveTotal(updatedValue);
                 }}
+                value={fiveValue}
               />
             </td>
             <td>= ${fiveTotal.toFixed(2)}</td>
@@ -213,12 +251,13 @@ const InputForm = () => {
                 type='number'
                 name='ten-bill'
                 onChange={(e) => {
-                  const updatedValue = inputChangeHandler(
+                  const updatedValue = functions.inputChangeHandler(
                     currencyValues.ten,
                     e
                   );
                   setTenTotal(updatedValue);
                 }}
+                value={tenValue}
               />
             </td>
             <td>= ${tenTotal.toFixed(2)}</td>
@@ -231,12 +270,13 @@ const InputForm = () => {
                 type='number'
                 name='twenty-bill'
                 onChange={(e) => {
-                  const updatedValue = inputChangeHandler(
+                  const updatedValue = functions.inputChangeHandler(
                     currencyValues.twenty,
                     e
                   );
                   setTwentyTotal(updatedValue);
                 }}
+                value={twentyValue}
               />
             </td>
             <td>= ${twentyTotal.toFixed(2)}</td>
@@ -249,12 +289,13 @@ const InputForm = () => {
                 type='number'
                 name='fifty-bill'
                 onChange={(e) => {
-                  const updatedValue = inputChangeHandler(
+                  const updatedValue = functions.inputChangeHandler(
                     currencyValues.fifty,
                     e
                   );
                   setFiftyTotal(updatedValue);
                 }}
+                value={fiftyValue}
               />
             </td>
             <td>= ${fiftyTotal.toFixed(2)}</td>
@@ -267,12 +308,13 @@ const InputForm = () => {
                 type='number'
                 name='hundred-bill'
                 onChange={(e) => {
-                  const updatedValue = inputChangeHandler(
+                  const updatedValue = functions.inputChangeHandler(
                     currencyValues.hundred,
                     e
                   );
                   setHundredTotal(updatedValue);
                 }}
+                value={hundredValue}
               />
             </td>
             <td>= ${hundredTotal.toFixed(2)}</td>
@@ -305,7 +347,9 @@ const InputForm = () => {
                 type='number'
                 name='cheques'
                 onChange={(e) => {
-                  const updatedValue = isNaNChecker(e.target.valueAsNumber);
+                  const updatedValue = functions.isNaNChecker(
+                    e.target.valueAsNumber
+                  );
                   setChequeTotal(updatedValue);
                 }}
               />
@@ -321,7 +365,9 @@ const InputForm = () => {
                 type='number'
                 name='credit-card'
                 onChange={(e) => {
-                  const updatedValue = isNaNChecker(e.target.valueAsNumber);
+                  const updatedValue = functions.isNaNChecker(
+                    e.target.valueAsNumber
+                  );
                   setCreditCardTotal(updatedValue);
                 }}
               />
@@ -345,7 +391,9 @@ const InputForm = () => {
                 type='number'
                 name='invoices'
                 onChange={(e) => {
-                  const updatedValue = isNaNChecker(e.target.valueAsNumber);
+                  const updatedValue = functions.isNaNChecker(
+                    e.target.valueAsNumber
+                  );
                   setInvoicesTotal(updatedValue);
                 }}
               />
