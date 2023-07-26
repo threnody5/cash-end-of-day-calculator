@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './styles.css';
 
 const InputForm = () => {
-  const [nickleTotal, setNickelTotal] = useState(0);
+  const [nickelTotal, setNickelTotal] = useState(0);
   const [dimeTotal, setDimeTotal] = useState(0);
   const [quarterTotal, setQuarterTotal] = useState(0);
   const [dollarTotal, setDollarTotal] = useState(0);
@@ -50,7 +50,7 @@ const InputForm = () => {
 
   useEffect((): void => {
     setCashTotal(
-      nickleTotal +
+      nickelTotal +
         dimeTotal +
         quarterTotal +
         dollarTotal +
@@ -65,7 +65,7 @@ const InputForm = () => {
     setDepositTotal(cashForDepositTotal + chequeTotal + creditCardTotal);
     setOverOrShortTotal(invoicesTotal - depositTotal);
   }, [
-    nickleTotal,
+    nickelTotal,
     dimeTotal,
     quarterTotal,
     dollarTotal,
@@ -87,7 +87,7 @@ const InputForm = () => {
     return value * amount;
   };
   return (
-    <>
+    <main className='input-form'>
       <input
         type='text'
         placeholder='name'
@@ -111,7 +111,7 @@ const InputForm = () => {
                 }}
               />
             </td>
-            <td>= ${nickleTotal.toFixed(2)}</td>
+            <td>= ${nickelTotal.toFixed(2)}</td>
           </tr>
           <tr>
             <td>$0.10</td>
@@ -363,16 +363,14 @@ const InputForm = () => {
           </tr>
         </tbody>
       </table>
-      <div className='over-or-short-reason'>
-        <label>
-          Over or Short Reason:
-          <input
-            type='text'
-            name='reason'
-          />
-        </label>
+      <div className='over-or-short-reason-title'>Over or Short Reason:</div>
+      <div className='over-or-short-reason-textarea'>
+        <textarea
+          rows={10}
+          cols={48}
+        />
       </div>
-    </>
+    </main>
   );
 };
 

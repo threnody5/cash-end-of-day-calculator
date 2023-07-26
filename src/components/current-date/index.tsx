@@ -1,3 +1,5 @@
+import './styles.css';
+
 const CurrentDate = () => {
   const date = new Date();
   const day = date.getDate();
@@ -22,13 +24,13 @@ const CurrentDate = () => {
   const currentMonth = months[month];
 
   return (
-    <>
+    <main>
       <div>
-        <h2>
+        <h2 className='date-output'>
           {currentMonth}, {day}, {year}
         </h2>
       </div>
-    </>
+    </main>
   );
 };
 

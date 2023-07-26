@@ -4,11 +4,11 @@ import './App.css';
 
 function App() {
   return (
-    <>
-      <h1>End of Day Calculator</h1>
+    <main>
+      <h1 className='title-message'>End of Day Calculator</h1>
       <CurrentDate />
       <InputForm />
-    </>
+    </main>
   );
 }
 

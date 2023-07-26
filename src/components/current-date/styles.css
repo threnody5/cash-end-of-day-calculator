@@ -1,4 +1,4 @@
-main .title-message {
+main div .date-output {
   display: flex;
   justify-content: center;
 }
