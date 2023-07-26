@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import './styles.css';
 
 const InputForm = () => {
   const [nickleTotal, setNickelTotal] = useState(0);
@@ -87,169 +88,290 @@ const InputForm = () => {
   };
   return (
     <>
-      <main>
-        <div>
+      <input
+        type='text'
+        placeholder='name'
+        className='name-input'
+      />
+      <table>
+        <tbody>
+          <tr>
+            <td>$0.05</td>
+            <td>X</td>
+            <td>
+              <input
+                type='number'
+                name='nickel'
+                onChange={(e) => {
+                  const updatedValue = inputChangeHandler(
+                    currencyValues.nickel,
+                    e
+                  );
+                  setNickelTotal(updatedValue);
+                }}
+              />
+            </td>
+            <td>= ${nickleTotal.toFixed(2)}</td>
+          </tr>
+          <tr>
+            <td>$0.10</td>
+            <td>X</td>
+
+            <td>
+              <input
+                type='number'
+                name='dime'
+                onChange={(e) => {
+                  const updatedValue = inputChangeHandler(
+                    currencyValues.dime,
+                    e
+                  );
+                  setDimeTotal(updatedValue);
+                }}
+              />
+            </td>
+            <td>= ${dimeTotal.toFixed(2)}</td>
+          </tr>
+          <tr>
+            <td>$0.25</td>
+            <td>X</td>
+
+            <td>
+              <input
+                type='number'
+                name='quarter'
+                onChange={(e) => {
+                  const updatedValue = inputChangeHandler(
+                    currencyValues.quarter,
+                    e
+                  );
+                  setQuarterTotal(updatedValue);
+                }}
+              />
+            </td>
+            <td>= ${quarterTotal.toFixed(2)}</td>
+          </tr>
+          <tr>
+            <td>$1.00</td>
+            <td>X</td>
+            <td>
+              <input
+                type='number'
+                name='dollar'
+                onChange={(e) => {
+                  const updatedValue = inputChangeHandler(
+                    currencyValues.dollar,
+                    e
+                  );
+                  setDollarTotal(updatedValue);
+                }}
+              />
+            </td>
+            <td>= ${dollarTotal.toFixed(2)}</td>
+          </tr>
+          <tr>
+            <td>$2.00</td>
+            <td>X</td>
+            <td>
+              <input
+                type='number'
+                name='toonie'
+                onChange={(e) => {
+                  const updatedValue = inputChangeHandler(
+                    currencyValues.toonie,
+                    e
+                  );
+                  setToonieTotal(updatedValue);
+                }}
+              />
+            </td>
+            <td>= ${toonieTotal.toFixed(2)}</td>
+          </tr>
+          <tr>
+            <td>$5.00</td>
+            <td>X</td>
+            <td>
+              <input
+                type='number'
+                name='five-bill'
+                onChange={(e) => {
+                  const updatedValue = inputChangeHandler(
+                    currencyValues.five,
+                    e
+                  );
+                  setFiveTotal(updatedValue);
+                }}
+              />
+            </td>
+            <td>= ${fiveTotal.toFixed(2)}</td>
+          </tr>
+          <tr>
+            <td>$10.00</td>
+            <td>X</td>
+            <td>
+              <input
+                type='number'
+                name='ten-bill'
+                onChange={(e) => {
+                  const updatedValue = inputChangeHandler(
+                    currencyValues.ten,
+                    e
+                  );
+                  setTenTotal(updatedValue);
+                }}
+              />
+            </td>
+            <td>= ${tenTotal.toFixed(2)}</td>
+          </tr>
+          <tr>
+            <td>$20.00</td>
+            <td>X</td>
+            <td>
+              <input
+                type='number'
+                name='twenty-bill'
+                onChange={(e) => {
+                  const updatedValue = inputChangeHandler(
+                    currencyValues.twenty,
+                    e
+                  );
+                  setTwentyTotal(updatedValue);
+                }}
+              />
+            </td>
+            <td>= ${twentyTotal.toFixed(2)}</td>
+          </tr>
+          <tr>
+            <td>$50.00</td>
+            <td>X</td>
+            <td>
+              <input
+                type='number'
+                name='fifty-bill'
+                onChange={(e) => {
+                  const updatedValue = inputChangeHandler(
+                    currencyValues.fifty,
+                    e
+                  );
+                  setFiftyTotal(updatedValue);
+                }}
+              />
+            </td>
+            <td>= ${fiftyTotal.toFixed(2)}</td>
+          </tr>
+          <tr>
+            <td>$100.00</td>
+            <td>X</td>
+            <td>
+              <input
+                type='number'
+                name='hundred-bill'
+                onChange={(e) => {
+                  const updatedValue = inputChangeHandler(
+                    currencyValues.hundred,
+                    e
+                  );
+                  setHundredTotal(updatedValue);
+                }}
+              />
+            </td>
+            <td>= ${hundredTotal.toFixed(2)}</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Total Cash and Coin</strong>
+            </td>
+            <td>
+              <strong>:</strong>
+            </td>
+            <td></td>
+            <td>= ${cashTotal.toFixed(2)}</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Total Cash for Deposit</strong>
+            </td>
+            <td>
+              <strong>:</strong>
+            </td>
+            <td className='blank-area'></td>
+            <td>= ${cashForDepositTotal.toFixed(2)}</td>
+          </tr>
+          <tr>
+            <td>Total Cheques</td>
+            <td>$</td>
+            <td>
+              <input
+                type='number'
+                name='cheques'
+                onChange={(e) => {
+                  const updatedValue = isNaNChecker(e.target.valueAsNumber);
+                  setChequeTotal(updatedValue);
+                }}
+              />
+            </td>
+
+            <td> </td>
+          </tr>
+          <tr>
+            <td>Credit Card Total</td>
+            <td>$</td>
+            <td>
+              <input
+                type='number'
+                name='credit-card'
+                onChange={(e) => {
+                  const updatedValue = isNaNChecker(e.target.valueAsNumber);
+                  setCreditCardTotal(updatedValue);
+                }}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Total Deposit</strong>
+            </td>
+            <td>
+              <strong>:</strong>
+            </td>
+            <td> </td>
+            <td>= ${depositTotal.toFixed(2)}</td>
+          </tr>
+          <tr>
+            <td>Total Invoices</td>
+            <td>=</td>
+            <td>
+              <input
+                type='number'
+                name='invoices'
+                onChange={(e) => {
+                  const updatedValue = isNaNChecker(e.target.valueAsNumber);
+                  setInvoicesTotal(updatedValue);
+                }}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Over or Short</strong>
+            </td>
+            <td>
+              <strong>:</strong>
+            </td>
+            <td></td>
+            <td>= ${overOrShortTotal.toFixed(2)}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div className='over-or-short-reason'>
+        <label>
+          Over or Short Reason:
           <input
             type='text'
-            placeholder='name'
+            name='reason'
           />
-        </div>
-        <div>
-          $0.05 x{' '}
-          <input
-            type='number'
-            name='nickel'
-            onChange={(e) => {
-              const updatedValue = inputChangeHandler(currencyValues.nickel, e);
-              setNickelTotal(updatedValue);
-            }}
-          />{' '}
-          = ${nickleTotal.toFixed(2)}
-        </div>
-        <div>
-          $0.10 x{' '}
-          <input
-            type='number'
-            name='dime'
-            defaultValue={0}
-            onChange={(e) => {
-              setDimeTotal(calculateTotal(0.1, e.target.valueAsNumber));
-            }}
-          />{' '}
-          = ${dimeTotal.toFixed(2)}
-        </div>
-        <div>
-          $0.25 x{' '}
-          <input
-            type='number'
-            name='quarter'
-            onChange={(e) => {
-              setQuarterTotal(calculateTotal(0.25, e.target.valueAsNumber));
-            }}
-          />{' '}
-          = ${quarterTotal.toFixed(2)}
-        </div>
-        <div>
-          $1.00 x{' '}
-          <input
-            type='number'
-            name='dollar'
-            onChange={(e) => {
-              setDollarTotal(calculateTotal(1, e.target.valueAsNumber));
-            }}
-          />{' '}
-          = ${dollarTotal.toFixed(2)}
-        </div>
-        <div>
-          $2.00 x{' '}
-          <input
-            type='number'
-            name='toonie'
-            onChange={(e) => {
-              setToonieTotal(calculateTotal(2, e.target.valueAsNumber));
-            }}
-          />{' '}
-          = ${toonieTotal.toFixed(2)}
-        </div>
-        <div>
-          $5.00 x{' '}
-          <input
-            type='number'
-            name='five-bill'
-            onChange={(e) => {
-              setFiveTotal(calculateTotal(5, e.target.valueAsNumber));
-            }}
-          />{' '}
-          = ${fiveTotal.toFixed(2)}
-        </div>
-        <div>
-          $10.00 x{' '}
-          <input
-            type='number'
-            name='ten-bill'
-            onChange={(e) => {
-              setTenTotal(calculateTotal(10, e.target.valueAsNumber));
-            }}
-          />{' '}
-          = ${tenTotal.toFixed(2)}
-        </div>
-        <div>
-          $20.00 x{' '}
-          <input
-            type='number'
-            name='twenty-bill'
-            onChange={(e) => {
-              setTwentyTotal(calculateTotal(20, e.target.valueAsNumber));
-            }}
-          />{' '}
-          = ${twentyTotal.toFixed(2)}
-        </div>
-        <div>
-          $50.00 x{' '}
-          <input
-            type='number'
-            name='fifty-bill'
-            onChange={(e) => {
-              setFiftyTotal(calculateTotal(50, e.target.valueAsNumber));
-            }}
-          />{' '}
-          = ${fiftyTotal.toFixed(2)}
-        </div>
-        <div>
-          $100.00 x{' '}
-          <input
-            type='number'
-            name='hundred-bill'
-            onChange={(e) => {
-              setHundredTotal(calculateTotal(100, e.target.valueAsNumber));
-            }}
-          />{' '}
-          = ${hundredTotal.toFixed(2)}
-        </div>
-        <div>
-          <strong>Total Cash and Coin: </strong>= ${cashTotal.toFixed(2)}
-        </div>
-        <div>
-          <strong>Total Cash for Deposit:</strong>= $
-          {cashForDepositTotal.toFixed(2)}
-        </div>
-        <div>
-          Total Cheques: ${' '}
-          <input
-            type='number'
-            name='cheques'
-            onChange={(e) => {
-              setChequeTotal(e.target.valueAsNumber);
-            }}
-          />
-        </div>
-        <div>
-          Credit Card Total: ${' '}
-          <input
-            type='number'
-            name='credit-card'
-            onChange={(e) => {
-              setCreditCardTotal(e.target.valueAsNumber);
-            }}
-          />
-        </div>
-        <div>
-          <strong>Total Deposit: </strong>= ${depositTotal.toFixed(2)}
-        </div>
-        <div>
-          Total Invoices: ={' '}
-          <input
-            type='number'
-            name='invoices'
-            onChange={(e) => {
-              setInvoicesTotal(e.target.valueAsNumber);
-            }}
-          />
-        </div>
-        <div>
-          <strong>Over or Short: </strong>= ${overOrShortTotal.toFixed(2)}
-        </div>
-      </main>
+        </label>
+      </div>
     </>
   );
 };
