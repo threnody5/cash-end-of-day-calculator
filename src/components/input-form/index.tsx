@@ -86,14 +86,15 @@ const InputForm = () => {
   const calculateTotal = (value: number, amount: number): number => {
     return value * amount;
   };
+
   return (
-    <main className='input-form'>
+    <main className='cash-form'>
       <input
         type='text'
         placeholder='name'
         className='name-input'
       />
-      <table>
+      <table className='cash-input-table'>
         <tbody>
           <tr>
             <td>$0.05</td>
@@ -116,7 +117,6 @@ const InputForm = () => {
           <tr>
             <td>$0.10</td>
             <td>X</td>
-
             <td>
               <input
                 type='number'
@@ -135,7 +135,6 @@ const InputForm = () => {
           <tr>
             <td>$0.25</td>
             <td>X</td>
-
             <td>
               <input
                 type='number'
@@ -277,25 +276,27 @@ const InputForm = () => {
             </td>
             <td>= ${hundredTotal.toFixed(2)}</td>
           </tr>
+        </tbody>
+      </table>
+      <table className='cash-output-table'>
+        <tbody>
           <tr>
             <td>
               <strong>Total Cash and Coin</strong>
             </td>
             <td>
-              <strong>:</strong>
+              <strong>=</strong>
             </td>
-            <td></td>
-            <td>= ${cashTotal.toFixed(2)}</td>
+            <td>${cashTotal.toFixed(2)}</td>
           </tr>
           <tr>
             <td>
               <strong>Total Cash for Deposit</strong>
             </td>
             <td>
-              <strong>:</strong>
+              <strong>=</strong>
             </td>
-            <td className='blank-area'></td>
-            <td>= ${cashForDepositTotal.toFixed(2)}</td>
+            <td>${cashForDepositTotal.toFixed(2)}</td>
           </tr>
           <tr>
             <td>Total Cheques</td>
@@ -310,8 +311,6 @@ const InputForm = () => {
                 }}
               />
             </td>
-
-            <td> </td>
           </tr>
           <tr>
             <td>Credit Card Total</td>
@@ -332,10 +331,9 @@ const InputForm = () => {
               <strong>Total Deposit</strong>
             </td>
             <td>
-              <strong>:</strong>
+              <strong>=</strong>
             </td>
-            <td> </td>
-            <td>= ${depositTotal.toFixed(2)}</td>
+            <td>${depositTotal.toFixed(2)}</td>
           </tr>
           <tr>
             <td>Total Invoices</td>
@@ -356,10 +354,9 @@ const InputForm = () => {
               <strong>Over or Short</strong>
             </td>
             <td>
-              <strong>:</strong>
+              <strong>=</strong>
             </td>
-            <td></td>
-            <td>= ${overOrShortTotal.toFixed(2)}</td>
+            <td>${overOrShortTotal.toFixed(2)}</td>
           </tr>
         </tbody>
       </table>
